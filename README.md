@@ -1,10 +1,10 @@
 # Interfacing-a-Digital-INPUT-push-button-to-LPC2148-ARM-7-Microcontroller-
-Name :
-Roll no 
-Date of experiment :
+Name :Anusha R
+Roll no: 212221230006 
+Date of experiment :14.10.2022
 
 Ex. No. : 3
-Date: 
+Date:14.10.2022 
  
 ### Aim: To Interface a Digital input (pushbutton ) to LPC2148 ARM 7 and write a code to switch on and of an LED 
 Components required: Proteus ISIS professional suite, Kiel μ vision 5 Development environment 
@@ -115,13 +115,84 @@ Figure -11 Hex file for simulation
 Step 9: Select the hex file from the Kiel program folder and import the program in to the microcontroller as shown in figure 11 ,  debug and if no errors in connections are found, run the VSM simulation to view the output.
 
 
-### Kiel - Program  
+### Kiel - Program  :
+#include<lpc214x.h>
+#include<stdint.h>
+#include<stdlib.h>
+#include<stdio.h>
+void delay_ms(uint16_t j)   
+{
+	uint16_t x,i;
+	for(i=0;i<j;i++)
+	{
+		for(x=0;x<6000;x++);     
+	}
+}
+void LCD_CMD(char command)
+{
+	IO0PIN = ((IO0PIN & 0xFFFF00FF) |(command<<8));
+	IO0SET = 0x00000040;    
+	IO0CLR = 0x00000030;    
+	delay_ms(2);
+	IO0CLR = 0x00000040;      
+	delay_ms(5);
+}
+void LCD_INIT(void)
+{
+	IO0DIR = 0x0000FFF0;    
+	delay_ms(20);
+	LCD_CMD(0x38);      
+	LCD_CMD(0x0c);     
+	LCD_CMD(0x06);     
+	LCD_CMD(0x01);        
+	LCD_CMD(0x80);        
+}
+void LCD_STRING(char*msg)
+{
+	uint8_t i=0;
+	while(msg[i]!=0)
+	{
+		IO0PIN = ((IO0PIN & 0xFFFF00FF) | (msg[i]<<8));
+		IO0SET = 0x00000050;  
+		IO0CLR = 0x00000020;      
+		delay_ms(2);
+		IO0CLR = 0x00000040;      
+		delay_ms(5);
+		i++;
+	}
+}
+void LCD_CHAR(char msg)
+{
+	IO0PIN = ((IO0PIN & 0xFFFF00FF) | (msg<<8));
+	IO0SET = 0x00000050;     
+	IO0CLR = 0x00000020;    /* RW=0*/
+	delay_ms(2);
+	IO0CLR = 0x00000040;       /* EN=0,RS & RW UNCHANGED (RS=1,RW=0)*/
+	delay_ms(5);
+}
+int main(void)
+{
+	/*uint8_t j;
+  j=0;
+	char val_j[3];*/
+	LCD_INIT();
+	LCD_STRING("WELCOME TO AI&DS");
+	LCD_CMD(0xC0);
+	LCD_STRING("212221230006");
+	return 0;
+}
+
+
+### Output screen shots :
+![WhatsApp Image 2022-10-17 at 8 44 02 PM](https://user-images.githubusercontent.com/93427472/196228424-c1654111-776f-4fc8-895f-648cb789d663.jpeg)
+![WhatsApp Image 2022-10-17 at 8 44 02 PM (1)](https://user-images.githubusercontent.com/93427472/196228567-dc1c4b02-5c3e-421f-bbcf-d176c05d6ff7.jpeg)
+
+![image](https://user-images.githubusercontent.com/93427472/196228720-d13fd1e4-1b6b-4647-9934-d22a7b913bc6.png)
 
 
 ### Result :
 Interfacing a digital output with ARM microcontroller is executed 
-
-### Output screen shots :
+ 
 
 
 
