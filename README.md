@@ -185,9 +185,9 @@ int main(void)
 
 ~~~
 ### Output screen shots :
-![WhatsApp Image 2022-10-17 at 8 44 02 PM (1)](https://user-images.githubusercontent.com/93427472/196228567-dc1c4b02-5c3e-421f-bbcf-d176c05d6ff7.jpeg)
-
 ![WhatsApp Image 2022-10-17 at 8 44 02 PM](https://user-images.githubusercontent.com/93427472/196228424-c1654111-776f-4fc8-895f-648cb789d663.jpeg)
+
+![WhatsApp Image 2022-10-17 at 8 44 02 PM (1)](https://user-images.githubusercontent.com/93427472/196228567-dc1c4b02-5c3e-421f-bbcf-d176c05d6ff7.jpeg)
  
 ![image](https://user-images.githubusercontent.com/93427472/196228720-d13fd1e4-1b6b-4647-9934-d22a7b913bc6.png)
 
